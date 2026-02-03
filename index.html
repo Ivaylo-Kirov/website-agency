@@ -3,14 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tica Solutions — Websites That Handle Your Growth</title>
+    <title>Tica Solutions — Websites That Get You Customers</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg-primary: #0a0a0a;
             --bg-secondary: #111111;
@@ -21,107 +16,24 @@
             --accent-light: #818cf8;
             --border: #2a2a2a;
         }
-
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
-            overflow-x: hidden;
         }
-
-        /* Background Grid Pattern */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            pointer-events: none;
-            z-index: -2;
-        }
-
-        /* Floating Gradient Orbs */
-        .orb {
-            position: fixed;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        .orb-1 {
-            width: 600px;
-            height: 600px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.6), rgba(129, 140, 248, 0.3));
-            top: -200px;
-            right: -100px;
-            animation: float-orb 20s ease-in-out infinite;
-        }
-
-        .orb-2 {
-            width: 500px;
-            height: 500px;
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(99, 102, 241, 0.3));
-            bottom: 20%;
-            left: -150px;
-            animation: float-orb 25s ease-in-out infinite reverse;
-        }
-
-        .orb-3 {
-            width: 400px;
-            height: 400px;
-            background: linear-gradient(135deg, rgba(34, 211, 238, 0.4), rgba(99, 102, 241, 0.2));
-            top: 50%;
-            right: 10%;
-            animation: float-orb 18s ease-in-out infinite;
-            animation-delay: -5s;
-        }
-
-        @keyframes float-orb {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            25% { transform: translate(30px, -30px) scale(1.05); }
-            50% { transform: translate(-20px, 20px) scale(0.95); }
-            75% { transform: translate(20px, 10px) scale(1.02); }
-        }
-
-        /* Scroll Animation Base */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .animate-on-scroll.delay-1 { transition-delay: 0.1s; }
-        .animate-on-scroll.delay-2 { transition-delay: 0.2s; }
-        .animate-on-scroll.delay-3 { transition-delay: 0.3s; }
-
-        /* Navigation */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 2rem;
+            top: 0; left: 0; right: 0;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            background: rgba(10, 10, 10, 0.8);
+            background: rgba(10,10,10,0.9);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
+            z-index: 1000;
         }
-
         .logo {
             display: flex;
             align-items: center;
@@ -131,1216 +43,312 @@
             color: var(--text-primary);
             text-decoration: none;
         }
-
-        .logo svg {
-            width: 40px;
-            height: 40px;
-        }
-
+        .logo svg { width: 40px; height: 40px; }
         .logo-text {
             background: linear-gradient(135deg, var(--accent), var(--accent-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-login {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-
-        .nav-login:hover {
-            color: var(--accent);
-        }
-
-        /* Login Modal */
-        .login-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .login-modal.active {
-            display: flex;
-        }
-
-        .login-container {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2.5rem;
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .login-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .login-close:hover {
-            color: var(--text-primary);
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .login-header h2 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .login-header p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .login-form .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .login-form label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .login-form input {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .login-form input:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .login-form .btn-login {
-            width: 100%;
-            padding: 0.875rem;
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 0.5rem;
-        }
-
-        .login-form .btn-login:hover {
-            background: var(--accent-light);
-        }
-
-        .login-form .btn-login:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .login-links {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-            font-size: 0.85rem;
-        }
-
-        .login-links a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .login-links a:hover {
-            color: var(--accent-light);
-        }
-
-        .login-error {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid #ef4444;
-            color: #ef4444;
-            padding: 0.75rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            display: none;
-        }
-
-        .login-success {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid #22c55e;
-            color: #22c55e;
-            padding: 0.75rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-            display: none;
-        }
-
-        .login-loading {
-            display: none;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .login-loading .spinner {
-            width: 40px;
-            height: 40px;
-            border: 3px solid var(--border);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
+        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; }
+        .nav-links a:hover { color: var(--text-primary); }
         .nav-cta {
             background: var(--accent);
             color: white;
-            padding: 0.6rem 1.5rem;
+            padding: 0.75rem 1.5rem;
             border-radius: 8px;
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s;
+            font-weight: 600;
         }
-
-        .nav-cta:hover {
-            background: var(--accent-light);
-            transform: translateY(-2px);
-        }
-
-        /* Hero */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 8rem 4rem 4rem;
-            position: relative;
-            overflow: hidden;
+            padding: 8rem 5% 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
         }
-
-        .hero-content {
-            flex: 1;
-            max-width: 600px;
-            z-index: 2;
-        }
-
-        .hero-visual {
-            flex: 1;
-            position: relative;
-            height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Floating Hero Images */
-        .hero-image-stack {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .hero-img {
-            position: absolute;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-            transition: transform 0.3s ease;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-        }
-
-        .hero-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .hero-img-1 {
-            width: 340px;
-            height: 230px;
-            top: 5%;
-            left: 5%;
-            z-index: 3;
-            transform: rotate(-2deg);
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(168, 85, 247, 0.3));
-        }
-
-        .hero-img-2 {
-            width: 300px;
-            height: 190px;
-            top: 40%;
-            right: 0%;
-            z-index: 2;
-            transform: rotate(3deg);
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.4));
-        }
-
-        .hero-img-3 {
-            width: 280px;
-            height: 340px;
-            bottom: 0%;
-            left: 15%;
-            z-index: 1;
-            transform: rotate(1deg);
-            background: linear-gradient(135deg, rgba(34, 211, 238, 0.3), rgba(99, 102, 241, 0.4));
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-
-        .hero-badge span {
-            color: #22c55e;
-        }
-
+        .hero-content { max-width: 800px; margin: 0 auto; }
         .hero h1 {
             font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            margin-bottom: 1rem;
+            color: white;
         }
-
-        /* Animated Gradient Text */
-        .gradient-text-animate {
-            background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 25%, #ffffff 50%, #818cf8 75%, #ffffff 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradient-shift 5s ease infinite;
-        }
-
-        @keyframes gradient-shift {
-            0% { background-position: 0% center; }
-            50% { background-position: 100% center; }
-            100% { background-position: 0% center; }
-        }
-
         .hero p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            max-width: 500px;
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
             margin-bottom: 2rem;
-            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
         .hero-cta {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .hero-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .hero-stats {
             display: flex;
-            gap: 1rem;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 4rem;
             flex-wrap: wrap;
         }
-
-        @media (max-width: 900px) {
-            .hero {
-                flex-direction: column;
-                padding: 7rem 2rem 3rem;
-                text-align: center;
-            }
-            
-            .hero-content {
-                max-width: 100%;
-            }
-            
-            .hero p {
-                max-width: 100%;
-            }
-            
-            .hero-cta {
-                justify-content: center;
-            }
-            
-            .hero-visual {
-                height: 350px;
-                width: 100%;
-                margin-top: 2rem;
-            }
-            
-            .hero-img-1 { width: 240px; height: 160px; left: 5%; }
-            .hero-img-2 { width: 220px; height: 140px; right: 5%; }
-            .hero-img-3 { width: 200px; height: 240px; left: 25%; }
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary:hover {
-            background: var(--accent-light);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-primary);
-            padding: 1rem 2.5rem;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-card);
-            border-color: var(--accent);
-        }
-
-        /* Section Base */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 1rem;
-        }
-
+        .stat { text-align: center; }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: white; }
+        .stat-label { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+        section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
         .section-title {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
+            font-size: clamp(2rem, 5vw, 2.5rem);
+            text-align: center;
             margin-bottom: 1rem;
-            line-height: 1.2;
         }
-
         .section-subtitle {
-            font-size: 1.1rem;
+            text-align: center;
             color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
+            margin-bottom: 3rem;
         }
-
-        /* Features Grid */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
-
         .feature-card {
             background: var(--bg-card);
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
+            transition: transform 0.3s;
         }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .feature-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
-        }
-
-        .feature-card:hover::before {
-            transform: translateX(100%);
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
-
+        .feature-card:hover { transform: translateY(-5px); border-color: var(--accent); }
         .feature-icon {
-            width: 48px;
-            height: 48px;
+            width: 48px; height: 48px;
             background: linear-gradient(135deg, var(--accent), var(--accent-light));
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 1rem;
         }
-
-        /* Stats Section */
-        .stats-section {
-            background: var(--bg-secondary);
-            margin: 0 -2rem;
-            padding: 4rem 2rem;
+        .feature-card h3 { margin-bottom: 0.5rem; }
+        .feature-card p { color: var(--text-secondary); }
+        .testimonials {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
             max-width: none;
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            padding: 5rem 5%;
         }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        .stat-item {
-            padding: 1.5rem;
-        }
-
-        .stat-number {
-            font-size: 3.5rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Showcase Section */
-        .showcase-section {
-            background: var(--bg-secondary);
-            margin: 0 -2rem;
-            padding: 6rem 2rem;
-            max-width: none;
-        }
-
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 900px) {
-            .showcase-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .showcase-card {
-            position: relative;
-            border-radius: 16px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .showcase-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
-        }
-
-        .showcase-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .showcase-card:hover img {
-            transform: scale(1.1);
-        }
-
-        .showcase-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 2rem 1.5rem 1.5rem;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
-        }
-
-        .showcase-overlay h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .showcase-overlay p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-        }
-
-        .feature-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* Process Section */
-        .process-section {
-            background: var(--bg-secondary);
-            margin: 0 -2rem;
-            padding: 6rem 2rem;
-            max-width: none;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (max-width: 900px) {
-            .process-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 500px) {
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .process-step {
-            text-align: center;
-            padding: 2rem;
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--bg-card);
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin: 0 auto 1.5rem;
-        }
-
-        .process-step h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .process-step p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        /* Pricing */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 900px) {
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                max-width: 400px;
-                margin: 0 auto;
-            }
-        }
-
-        .pricing-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--accent);
-            background: linear-gradient(180deg, var(--bg-card) 0%, rgba(99, 102, 241, 0.1) 100%);
-        }
-
-        .pricing-card.featured::before {
-            content: 'MOST POPULAR';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--accent);
-            color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-light);
-        }
-
-        .pricing-name {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-desc {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .pricing-price {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-price span {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .pricing-features li {
-            padding: 0.75rem 0;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
-        .pricing-features li::before {
-            content: '✓';
-            color: #22c55e;
-            margin-right: 0.75rem;
-            font-weight: bold;
-        }
-
-        /* Testimonials */
+        .testimonials .section-title,
+        .testimonials .section-subtitle { color: white; }
         .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-
-        @media (max-width: 900px) {
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
         .testimonial-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
             padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.2);
         }
-
-        .testimonial-stars {
-            color: #fbbf24;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
+        .testimonial-stars { color: #ffd700; margin-bottom: 1rem; }
         .testimonial-text {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
+            color: rgba(255,255,255,0.9);
             font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
-
         .testimonial-author {
             display: flex;
             align-items: center;
             gap: 1rem;
         }
-
         .author-avatar {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            width: 44px; height: 44px;
+            background: rgba(255,255,255,0.3);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.2rem;
         }
-
-        .author-info h4 {
-            font-size: 0.95rem;
-            margin-bottom: 0.2rem;
+        .author-info h4 { color: white; font-size: 0.95rem; }
+        .author-info p { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
-
-        .author-info p {
-            font-size: 0.8rem;
+        .pricing-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+        .pricing-card.featured {
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+        .pricing-card h3 { margin-bottom: 0.5rem; }
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 1rem 0;
+        }
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin: 2rem 0;
+        }
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
             color: var(--text-secondary);
         }
-
-        /* CTA Section */
-        .cta-section {
+        .pricing-features li::before {
+            content: "✓ ";
+            color: #22c55e;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            width: 100%;
+        }
+        .btn-primary { background: var(--accent); color: white; }
+        .btn-secondary { background: transparent; color: var(--text-primary); border: 1px solid var(--border); }
+        .cta {
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(99, 102, 241, 0.05) 100%);
             border: 1px solid var(--border);
             border-radius: 24px;
-            padding: 5rem 2rem;
+            padding: 4rem 2rem;
             text-align: center;
-            margin: 4rem auto;
-            max-width: 1000px;
         }
-
-        .cta-section h2 {
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 1rem;
-        }
-
-        .cta-section p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin: 0 auto 2rem;
-        }
-
-        /* Footer */
         footer {
             border-top: 1px solid var(--border);
-            padding: 3rem 2rem;
+            padding: 3rem 5%;
             text-align: center;
             color: var(--text-secondary);
         }
-
-        footer p {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-
-        .footer-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        /* Mobile Nav */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            nav {
-                padding: 1rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
+            .nav-links { display: none; }
+            .hero-stats { gap: 1.5rem; }
+            .pricing-card.featured { transform: none; }
         }
     </style>
 </head>
 <body>
-    <!-- Floating Gradient Orbs -->
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
-
     <nav>
         <a href="#" class="logo">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Computer/Monitor -->
+            <svg viewBox="0 0 100 100" fill="none">
                 <rect x="10" y="35" width="55" height="40" rx="4" fill="#6366f1"/>
                 <rect x="15" y="40" width="45" height="28" rx="2" fill="#1a1a1a"/>
                 <rect x="30" y="75" width="15" height="8" fill="#6366f1"/>
                 <rect x="22" y="83" width="32" height="4" rx="2" fill="#6366f1"/>
-                <!-- Woman Head Silhouette -->
                 <circle cx="72" cy="35" r="18" fill="#818cf8"/>
                 <path d="M55 35C55 25.6 62.6 18 72 18C81.4 18 89 25.6 89 35C89 42 84.5 48 78.5 50.5L80 58C80 58 72 55 64 58L65.5 50.5C59.5 48 55 42 55 35Z" fill="#6366f1"/>
-                <!-- Hair detail -->
                 <path d="M55 32C55 22 62 15 72 15C82 15 89 22 89 32C89 25 84 20 72 20C60 20 55 25 55 32Z" fill="#a5b4fc"/>
             </svg>
             <span class="logo-text">Tica Solutions</span>
         </a>
         <ul class="nav-links">
-            <li><a href="#features">Features</a></li>
-            <li><a href="#process">Process</a></li>
-            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#features">Services</a></li>
             <li><a href="#testimonials">Reviews</a></li>
-            <li><a href="#" class="nav-login" onclick="openLogin(event)">Client Login</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-        <a href="#contact" class="nav-cta">Get Started</a>
+        <a href="#contact" class="nav-cta">Get Free Quote</a>
     </nav>
 
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-badge">
-                <span>●</span> Now accepting new clients
-            </div>
-            
-            <h1>Websites That Handle Your Growth</h1>
-            <p>We build stunning, conversion-focused websites for Toronto small businesses. No templates. No busywork. Just results.</p>
-            
-            <div class="hero-cta">
-                <a href="#contact" class="btn-primary">Start Your Project</a>
-                <a href="#features" class="btn-secondary">See How It Works</a>
-            </div>
-        </div>
-        
-        <div class="hero-visual">
-            <div class="hero-image-stack">
-                <div class="hero-img hero-img-1">
-                    <img src="images/website-mockup-1.jpg" alt="Website Design" onerror="this.style.display='none'">
+            <h1>Websites That Get You Customers</h1>
+            <p>Simple, affordable websites for Toronto small businesses. No tech jargon. No hidden fees. Just results.</p>
+            <a href="#contact" class="hero-cta">Get Your Free Quote</a>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Websites Built</div>
                 </div>
-                <div class="hero-img hero-img-2">
-                    <img src="images/website-mockup-2.jpg" alt="Mobile Design" onerror="this.style.display='none'">
+                <div class="stat">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">Client Satisfaction</div>
                 </div>
-                <div class="hero-img hero-img-3">
-                    <img src="images/website-mockup-3.svg" alt="Web Development" onerror="this.style.display='none'">
+                <div class="stat">
+                    <div class="stat-number">2 Weeks</div>
+                    <div class="stat-label">Average Delivery</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="stats-grid">
-            <div class="stat-item animate-on-scroll">
-                <div class="stat-number" data-target="50">0</div>
-                <div class="stat-label">Websites Launched</div>
-            </div>
-            <div class="stat-item animate-on-scroll delay-1">
-                <div class="stat-number" data-target="14">0</div>
-                <div class="stat-label">Day Avg. Delivery</div>
-            </div>
-            <div class="stat-item animate-on-scroll delay-2">
-                <div class="stat-number" data-target="100">0</div>
-                <div class="stat-label">% Satisfaction</div>
-            </div>
-            <div class="stat-item animate-on-scroll delay-3">
-                <div class="stat-number" data-target="24">0</div>
-                <div class="stat-label">/7 Support</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Showcase Section -->
-    <section class="showcase-section">
-        <div class="section-header">
-            <div class="section-label">Our Work</div>
-            <h2 class="section-title">Results That Speak</h2>
-            <p class="section-subtitle">Beautiful, fast, conversion-focused websites built for Toronto businesses.</p>
-        </div>
-
-        <div class="showcase-grid">
-            <div class="showcase-card animate-on-scroll">
-                <img src="images/design.jpg" alt="Custom Web Design">
-                <div class="showcase-overlay">
-                    <h3>Custom Design</h3>
-                    <p>Unique, brand-focused visuals</p>
-                </div>
-            </div>
-
-            <div class="showcase-card animate-on-scroll delay-1">
-                <img src="images/analytics.jpg" alt="Analytics Dashboard">
-                <div class="showcase-overlay">
-                    <h3>Data Driven</h3>
-                    <p>SEO & conversion optimized</p>
-                </div>
-            </div>
-
-            <div class="showcase-card animate-on-scroll delay-2">
-                <img src="images/mobile.jpg" alt="Mobile Responsive">
-                <div class="showcase-overlay">
-                    <h3>Mobile First</h3>
-                    <p>Perfect on every device</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="features" class="animate-on-scroll">
-        <div class="section-header">
-            <div class="section-label">Features</div>
-            <h2 class="section-title">Everything You Need to Win Online</h2>
-            <p class="section-subtitle">From first impression to final conversion, we've got you covered.</p>
-        </div>
+    <section id="features">
+        <h2 class="section-title">Everything You Need to Succeed Online</h2>
+        <p class="section-subtitle">We handle the tech so you can focus on your business.</p>
 
         <div class="features-grid">
-            <div class="feature-card animate-on-scroll">
-                <div class="feature-icon">🎨</div>
-                <h3>Custom Design</h3>
-                <p>No cookie-cutter templates. Every pixel crafted to represent your brand and convert visitors into customers.</p>
-            </div>
-
-            <div class="feature-card animate-on-scroll delay-1">
+            <div class="feature-card">
                 <div class="feature-icon">📱</div>
-                <h3>Mobile-First</h3>
-                <p>60%+ of your traffic is mobile. Your site will look flawless and load instantly on every device, guaranteed.</p>
+                <h3>Mobile-First Design</h3>
+                <p>Over 60% of your customers are on phones. Your site will look perfect on every device.</p>
             </div>
-
-            <div class="feature-card animate-on-scroll delay-2">
-                <div class="feature-icon">⚡</div>
-                <h3>Lightning Fast</h3>
-                <p>Slow sites kill conversions. We guarantee sub-3-second load times or we keep working until it's right.</p>
-            </div>
-
-            <div class="feature-card animate-on-scroll">
+            <div class="feature-card">
                 <div class="feature-icon">🔍</div>
                 <h3>Google Optimized</h3>
-                <p>Built with SEO best practices so your customers can actually find you when they search on Google.</p>
+                <p>Built with SEO best practices so Toronto customers can actually find you.</p>
             </div>
-
-            <div class="feature-card animate-on-scroll delay-1">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Slow sites lose customers. We guarantee under 3-second load times.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Secure & Reliable</h3>
+                <p>SSL, secure hosting, and backups included. Your site stays online.</p>
+            </div>
+            <div class="feature-card">
                 <div class="feature-icon">📝</div>
                 <h3>We Write Your Content</h3>
-                <p>Stuck on what to say? Our copywriters craft compelling content that sells your services for you.</p>
+                <p>Don't know what to say? We'll write professional copy that sells for you.</p>
             </div>
-
-            <div class="feature-card animate-on-scroll delay-2">
-                <div class="feature-icon">🛡️</div>
-                <h3>Satisfaction Guaranteed</h3>
-                <p>Not happy? We'll keep revising until you are. No extra fees, no questions asked. We're not done until you're proud.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="process" class="process-section">
-        <div class="section-header">
-            <div class="section-label">Process</div>
-            <h2 class="section-title">From Idea to Live in 2 Weeks</h2>
-            <p class="section-subtitle">No back-and-forth hell. Just a streamlined process that gets you online fast.</p>
-        </div>
-
-        <div class="process-grid">
-            <div class="process-step animate-on-scroll">
-                <div class="step-number">1</div>
-                <h3>Discovery Call</h3>
-                <p>20-minute chat about your goals, brand, and what makes your business special.</p>
-            </div>
-
-            <div class="process-step animate-on-scroll delay-1">
-                <div class="step-number">2</div>
-                <h3>We Build It</h3>
-                <p>Our team designs, writes, and develops your site. You focus on your business.</p>
-            </div>
-
-            <div class="process-step animate-on-scroll delay-2">
-                <div class="step-number">3</div>
-                <h3>Your Review</h3>
-                <p>See the preview, request changes. We revise until you're 100% satisfied.</p>
-            </div>
-
-            <div class="process-step animate-on-scroll delay-3">
-                <div class="step-number">4</div>
-                <h3>Go Live</h3>
-                <p>Launch day! We handle hosting, domain, Google setup. You're ready for customers.</p>
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Ongoing Support</h3>
+                <p>We're here after launch. Questions? Just send us a message.</p>
             </div>
         </div>
     </section>
 
-    <section id="pricing">
-        <div class="section-header">
-            <div class="section-label">Pricing</div>
-            <h2 class="section-title">Simple, Transparent Pricing</h2>
-            <p class="section-subtitle">No hidden fees. No hourly surprises. Just flat rates that make sense.</p>
-        </div>
-
-        <div class="pricing-grid">
-            <div class="pricing-card animate-on-scroll">
-                <div class="pricing-name">Starter</div>
-                <div class="pricing-desc">Perfect for new businesses</div>
-                <div class="pricing-price">$1,497</div>
-                
-                <ul class="pricing-features">
-                    <li>Up to 3 Pages</li>
-                    <li>Mobile Responsive</li>
-                    <li>Contact Form</li>
-                    <li>Google Maps</li>
-                    <li>Basic SEO Setup</li>
-                    <li>2 Week Delivery</li>
-                </ul>
-                
-                <a href="#contact" class="btn-secondary" style="width: 100%; display: block; text-align: center;">Get Started</a>
-            </div>
-
-            <div class="pricing-card featured animate-on-scroll delay-1">
-                <div class="pricing-name">Business</div>
-                <div class="pricing-desc">Most popular for growth</div>
-                <div class="pricing-price">$2,497</div>
-                
-                <ul class="pricing-features">
-                    <li>Up to 6 Pages</li>
-                    <li>Blog Setup</li>
-                    <li>Social Integration</li>
-                    <li>Google Business Setup</li>
-                    <li>30 Days Support</li>
-                    <li>10-14 Day Delivery</li>
-                </ul>
-                
-                <a href="#contact" class="btn-primary" style="width: 100%; display: block; text-align: center;">Get Started</a>
-            </div>
-
-            <div class="pricing-card animate-on-scroll delay-2">
-                <div class="pricing-name">Complete</div>
-                <div class="pricing-desc">For serious growth</div>
-                <div class="pricing-price">$3,997</div>
-                
-                <ul class="pricing-features">
-                    <li>Up to 10 Pages</li>
-                    <li>E-commerce (20 products)</li>
-                    <li>Advanced SEO</li>
-                    <li>90 Days Support</li>
-                    <li>Priority Delivery</li>
-                </ul>
-                
-                <a href="#contact" class="btn-secondary" style="width: 100%; display: block; text-align: center;">Get Started</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="testimonials">
-        <div class="section-header">
-            <div class="section-label">Testimonials</div>
-            <h2 class="section-title">Loved by Toronto Business Owners</h2>
-            <p class="section-subtitle">Don't just take our word for it. Here's what our clients say.</p>
-        </div>
+    <section id="testimonials" class="testimonials">
+        <h2 class="section-title">What Toronto Business Owners Say</h2>
+        <p class="section-subtitle">Real reviews from real clients across the GTA.</p>
 
         <div class="testimonials-grid">
-            <div class="testimonial-card animate-on-scroll">
+            <div class="testimonial-card">
                 <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"I was skeptical about the investment, but within 2 weeks of launching, I had 5 new customers find me on Google. The site pays for itself every single month."</p>
+                <p class="testimonial-text">"I was skeptical about spending money on a website, but within 2 weeks of launching, I had 5 new customers find me on Google. The site pays for itself every month."</p>
                 <div class="testimonial-author">
                     <div class="author-avatar">👨‍🍳</div>
                     <div class="author-info">
@@ -1350,7 +358,7 @@
                 </div>
             </div>
 
-            <div class="testimonial-card animate-on-scroll delay-1">
+            <div class="testimonial-card">
                 <div class="testimonial-stars">★★★★★</div>
                 <p class="testimonial-text">"Finally, a web designer who speaks human! No tech jargon, no upselling, just a beautiful site that works. My customers can actually book online now."</p>
                 <div class="testimonial-author">
@@ -1362,9 +370,9 @@
                 </div>
             </div>
 
-            <div class="testimonial-card animate-on-scroll delay-2">
+            <div class="testimonial-card">
                 <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"My old website was embarrassing. Customers told me they almost didn't call because it looked sketchy. Now I show up on Google Maps and business is up 40%."</p>
+                <p class="testimonial-text">"My old website was embarrassing. Customers told me they almost didn't call because it looked sketchy. The new site looks professional and business is up 40%."</p>
                 <div class="testimonial-author">
                     <div class="author-avatar">🔧</div>
                     <div class="author-info">
@@ -1373,214 +381,101 @@
                     </div>
                 </div>
             </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"I got 3 quotes from other developers — they wanted $5K+ and 2 months. These guys did it for $2,500 in 10 days. Professional, fast, and my phone hasn't stopped ringing."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">🎨</div>
+                    <div class="author-info">
+                        <h4>Jennifer Walsh</h4>
+                        <p>Owner, Greater Toronto Painting</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"As a one-person business, I don't have time to figure out tech stuff. They handled everything — writing, photos, even Google Business. Truly done-for-you."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">🧘</div>
+                    <div class="author-info">
+                        <h4>Priya Sharma</h4>
+                        <p>Owner, Mindful Movement Yoga</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Best investment I've made for my business. The website looks amazing on phones, which is where 70% of my customers find me. They even taught me how to update it."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">🧁</div>
+                    <div class="author-info">
+                        <h4>Amanda Liu</h4>
+                        <p>Owner, Sweet Dreams Bakery</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="contact" class="cta-section">
-        <h2>Ready to Grow Your Business?</h2>
-        <p>Join 50+ Toronto businesses who've transformed their online presence. Let's build something great together.</p>
-        
-        <a href="mailto:hello@ticasolutions.ca" class="btn-primary">Start Your Project →</a>
-        
-        <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-secondary);">
-            Or text us at <strong style="color: var(--text-primary);">(416) XXX-XXXX</strong>
-        </p>
+    <section id="pricing">
+        <h2 class="section-title">Simple, Transparent Pricing</h2>
+        <p class="section-subtitle">No hidden fees. No surprises. Just results.</p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Starter</h3>
+                <div class="price">$1,497</div>
+                <p>Perfect for new businesses</p>
+                <ul class="pricing-features">
+                    <li>Up to 3 Pages</li>
+                    <li>Mobile Responsive</li>
+                    <li>Contact Form</li>
+                    <li>Google Maps</li>
+                    <li>2 Week Delivery</li>
+                </ul>
+                <a href="#contact" class="btn btn-secondary">Get Started</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <h3>Business</h3>
+                <div class="price">$2,497</div>
+                <p>Most popular for growth</p>
+                <ul class="pricing-features">
+                    <li>Up to 6 Pages</li>
+                    <li>Blog Setup</li>
+                    <li>Social Integration</li>
+                    <li>Google Business Setup</li>
+                    <li>30 Days Support</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3>Complete</h3>
+                <div class="price">$3,997</div>
+                <p>For serious growth</p>
+                <ul class="pricing-features">
+                    <li>Up to 10 Pages</li>
+                    <li>E-commerce (20 products)</li>
+                    <li>Advanced SEO</li>
+                    <li>90 Days Support</li>
+                </ul>
+                <a href="#contact" class="btn btn-secondary">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="cta">
+        <h2 class="section-title">Ready to Get More Customers?</h2>
+        <p class="section-subtitle">Join 50+ Toronto businesses who've transformed their online presence.</p>
+        <a href="mailto:hello@ticasolutions.ca" class="btn btn-primary" style="width: auto; padding: 1rem 3rem;">Get Your Free Quote →</a>
     </section>
 
     <footer>
-        <p>© 2026 Tica Solutions Toronto. Helping local businesses grow online.</p>
-        <div class="footer-links">
-            <a href="#features">Features</a>
-            <a href="#process">Process</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#contact">Contact</a>
-        </div>
+        <p>© 2026 Tica Solutions. Helping Toronto businesses grow online.</p>
     </footer>
-
-    <!-- Client Login Modal -->
-    <div id="loginModal" class="login-modal">
-        <div class="login-container">
-            <button class="login-close" onclick="closeLogin()">&times;</button>
-            
-            <div class="login-header">
-                <h2>Client Login</h2>
-                <p>Access your project dashboard</p>
-            </div>
-            
-            <div id="loginError" class="login-error">Invalid email or password. Please try again.</div>
-            <div id="loginSuccess" class="login-success">Login successful! Redirecting to dashboard...</div>
-            
-            <div id="loginLoading" class="login-loading">
-                <div class="spinner"></div>
-                <p>Signing in...</p>
-            </div>
-            
-            <form id="loginForm" class="login-form" onsubmit="handleLogin(event)">
-                <div class="form-group">
-                    <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" name="email" placeholder="you@company.com" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" name="password" placeholder="••••••••" required>
-                </div>
-                
-                <button type="submit" class="btn-login" id="loginBtn">Sign In</button>
-                
-                <div class="login-links">
-                    <a href="#" onclick="forgotPassword(event)">Forgot password?</a>
-                    <a href="#" onclick="requestAccess(event)">Request Access</a>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Scroll Animation Observer
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    
-                    // Animate counters if this is a stat number
-                    const statNumber = entry.target.querySelector('.stat-number');
-                    if (statNumber && !statNumber.classList.contains('counted')) {
-                        animateCounter(statNumber);
-                        statNumber.classList.add('counted');
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animate-on-scroll elements
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Counter Animation
-        function animateCounter(element) {
-            const target = parseInt(element.getAttribute('data-target'));
-            const duration = 2000;
-            const step = target / (duration / 16);
-            let current = 0;
-
-            const timer = setInterval(() => {
-                current += step;
-                if (current >= target) {
-                    element.textContent = target + (target === 100 ? '%' : target === 24 ? '/7' : '+');
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current);
-                }
-            }, 16);
-        }
-
-        // Parallax effect for orbs on scroll
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            document.querySelectorAll('.orb').forEach((orb, index) => {
-                const speed = 0.1 + (index * 0.05);
-                orb.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
-
-        // Login Modal Functions
-        function openLogin(e) {
-            e.preventDefault();
-            document.getElementById('loginModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLogin() {
-            document.getElementById('loginModal').classList.remove('active');
-            document.body.style.overflow = '';
-            resetLoginForm();
-        }
-
-        function resetLoginForm() {
-            document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('loginLoading').style.display = 'none';
-            document.getElementById('loginError').style.display = 'none';
-            document.getElementById('loginSuccess').style.display = 'none';
-            document.getElementById('loginBtn').disabled = false;
-        }
-
-        function handleLogin(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            // Show loading state
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('loginLoading').style.display = 'block';
-            document.getElementById('loginError').style.display = 'none';
-            
-            // Simulate API call
-            setTimeout(() => {
-                document.getElementById('loginLoading').style.display = 'none';
-                
-                // For demo, accept any non-empty credentials
-                if (email && password) {
-                    document.getElementById('loginSuccess').style.display = 'block';
-                    
-                    // Simulate redirect
-                    setTimeout(() => {
-                        alert('Welcome to your Client Dashboard!\n\nThis would normally redirect to:\nhttps://portal.simplesites.ca/dashboard\n\nFeatures available:\n- Project timeline\n- File uploads\n- Invoice payments\n- Support tickets');
-                        closeLogin();
-                    }, 1500);
-                } else {
-                    document.getElementById('loginForm').style.display = 'block';
-                    document.getElementById('loginError').style.display = 'block';
-                }
-            }, 1500);
-        }
-
-        function forgotPassword(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            if (email) {
-                alert('Password reset link sent to ' + email + '\n\nCheck your email for instructions.');
-            } else {
-                alert('Please enter your email address first.');
-            }
-        }
-
-        function requestAccess(e) {
-            e.preventDefault();
-            alert('Access Request\n\nTo get client portal access:\n1. Contact your project manager\n2. Call (416) XXX-XXXX\n3. Email hello@ticasolutions.ca');
-        }
-
-        // Close modal on outside click
-        document.getElementById('loginModal').addEventListener('click', (e) => {
-            if (e.target.id === 'loginModal') {
-                closeLogin();
-            }
-        });
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLogin();
-            }
-        });
-    </script>
 </body>
 </html>
