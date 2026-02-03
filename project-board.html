@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ivo & Pancho - Project Board</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #30363d;
+        }
+        .header h1 {
+            color: #58a6ff;
+            font-size: 24px;
+        }
+        .header-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+        }
+        .stat {
+            background: #161b22;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+        }
+        .stat.pending { border-left: 3px solid #f0883e; }
+        .stat.approved { border-left: 3px solid #3fb950; }
+        .stat.done { border-left: 3px solid #58a6ff; }
+        .boards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .board {
+            background: #161b22;
+            border-radius: 12px;
+            border: 1px solid #30363d;
+            overflow: hidden;
+        }
+        .board-header {
+            padding: 16px;
+            border-bottom: 1px solid #30363d;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .board-header h2 {
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .board-header .count {
+            background: #30363d;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+        .board-content {
+            padding: 12px;
+            min-height: 200px;
+        }
+        .task {
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .task:hover {
+            border-color: #58a6ff;
+            transform: translateY(-1px);
+        }
+        .task.approved {
+            border-left: 3px solid #3fb950;
+        }
+        .task.pending {
+            border-left: 3px solid #f0883e;
+        }
+        .task.done {
+            border-left: 3px solid #58a6ff;
+            opacity: 0.7;
+        }
+        .task-title {
+            font-weight: 500;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        .task-meta {
+            display: flex;
+            gap: 10px;
+            font-size: 12px;
+            color: #8b949e;
+        }
+        .task-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-approve {
+            background: #238636;
+            color: white;
+        }
+        .btn-approve:hover {
+            background: #2ea043;
+        }
+        .btn-approve:disabled {
+            background: #30363d;
+            cursor: not-allowed;
+        }
+        .btn-done {
+            background: #1f6feb;
+            color: white;
+        }
+        .btn-done:hover {
+            background: #388bfd;
+        }
+        .btn-delete {
+            background: transparent;
+            color: #f85149;
+            border: 1px solid #f85149;
+        }
+        .btn-delete:hover {
+            background: #f85149;
+            color: white;
+        }
+        .add-task {
+            display: flex;
+            gap: 8px;
+            padding: 12px;
+            border-top: 1px solid #30363d;
+        }
+        .add-task input {
+            flex: 1;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 8px 12px;
+            color: #c9d1d9;
+            font-size: 14px;
+        }
+        .add-task input:focus {
+            outline: none;
+            border-color: #58a6ff;
+        }
+        .btn-add {
+            background: #238636;
+            color: white;
+            padding: 8px 16px;
+        }
+        .btn-add:hover {
+            background: #2ea043;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            padding: 24px;
+            width: 90%;
+            max-width: 500px;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-header h3 {
+            color: #58a6ff;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            color: #8b949e;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .modal-close:hover {
+            color: #f85149;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #8b949e;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 6px;
+            padding: 10px 12px;
+            color: #c9d1d9;
+            font-size: 14px;
+            font-family: inherit;
+        }
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #58a6ff;
+        }
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        .btn-primary {
+            background: #1f6feb;
+            color: white;
+        }
+        .btn-primary:hover {
+            background: #388bfd;
+        }
+        .btn-secondary {
+            background: #30363d;
+            color: #c9d1d9;
+        }
+        .btn-secondary:hover {
+            background: #484f58;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .status-pending {
+            background: rgba(240, 136, 62, 0.2);
+            color: #f0883e;
+        }
+        .status-approved {
+            background: rgba(63, 185, 80, 0.2);
+            color: #3fb950;
+        }
+        .status-done {
+            background: rgba(88, 166, 255, 0.2);
+            color: #58a6ff;
+        }
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #238636;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .subtasks {
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #30363d;
+        }
+        .subtask {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #8b949e;
+            margin-top: 4px;
+        }
+        .subtask input[type="checkbox"] {
+            accent-color: #58a6ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🦊 Ivo & Pancho - Project Board</h1>
+        <div class="header-stats">
+            <div class="stat pending">Pending: <span id="pending-count">0</span></div>
+            <div class="stat approved">Approved: <span id="approved-count">0</span></div>
+            <div class="stat done">Done: <span id="done-count">0</span></div>
+        </div>
+    </div>
+
+    <div class="boards" id="boards">
+        <!-- Boards will be generated by JS -->
+    </div>
+
+    <!-- Task Modal -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Task</h3>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" id="taskTitle" placeholder="Task title">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="taskDesc" placeholder="Add details..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>Project</label>
+                <select id="taskProject">
+                    <option value="tax-service">Tax Service Website</option>
+                    <option value="vania-likov">Vania Likov Real Estate</option>
+                    <option value="website-agency">Website Agency</option>
+                    <option value="general">General / Admin</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Subtasks (one per line)</label>
+                <textarea id="taskSubtasks" placeholder="- Research competitors&#10;- Draft homepage&#10;- Review with client"></textarea>
+            </div>
+            <div class="modal-actions">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveTask()">Save Task</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+
+    <script>
+        // Initial data
+        const initialData = {
+            projects: [
+                { id: 'tax-service', name: '📊 Tax Service Website', color: '#58a6ff' },
+                { id: 'vania-likov', name: '🏠 Vania Likov Real Estate', color: '#a371f7' },
+                { id: 'website-agency', name: '💻 Website Agency', color: '#3fb950' },
+                { id: 'general', name: '⚙️ General / Growth', color: '#f0883e' }
+            ],
+            tasks: [
+                {
+                    id: 1,
+                    project: 'tax-service',
+                    title: 'Set up Google Business Profile',
+                    desc: 'Create and optimize GBP for local SEO visibility',
+                    status: 'pending',
+                    subtasks: ['Claim business listing', 'Add services', 'Upload photos', 'Get first review'],
+                    created: new Date().toISOString()
+                },
+                {
+                    id: 2,
+                    project: 'vania-likov',
+                    title: 'Connect domain and deploy',
+                    desc: 'Point custom domain and make site live',
+                    status: 'pending',
+                    subtasks: ['Purchase domain', 'Configure DNS', 'Enable SSL', 'Test all links'],
+                    created: new Date().toISOString()
+                },
+                {
+                    id: 3,
+                    project: 'website-agency',
+                    title: 'Create free audit landing page',
+                    desc: 'Landing page to capture leads with free website audit offer',
+                    status: 'pending',
+                    subtasks: ['Write copy', 'Design form', 'Set up email capture', 'Create audit template'],
+                    created: new Date().toISOString()
+                },
+                {
+                    id: 4,
+                    project: 'general',
+                    title: 'Research: How top small agencies get clients',
+                    desc: 'Ongoing research into successful growth tactics',
+                    status: 'approved',
+                    subtasks: ['Read 3 case studies', 'Document tactics', 'Recommend next actions'],
+                    created: new Date().toISOString()
+                }
+            ]
+        };
+
+        // Load from localStorage or use initial
+        let data = JSON.parse(localStorage.getItem('projectBoardData')) || initialData;
+        let editingTaskId = null;
+
+        function saveData() {
+            localStorage.setItem('projectBoardData', JSON.stringify(data));
+            render();
+        }
+
+        function render() {
+            const boardsContainer = document.getElementById('boards');
+            boardsContainer.innerHTML = '';
+
+            let pendingCount = 0;
+            let approvedCount = 0;
+            let doneCount = 0;
+
+            data.projects.forEach(project => {
+                const projectTasks = data.tasks.filter(t => t.project === project.id);
+                const pending = projectTasks.filter(t => t.status === 'pending');
+                const approved = projectTasks.filter(t => t.status === 'approved');
+                const done = projectTasks.filter(t => t.status === 'done');
+
+                pendingCount += pending.length;
+                approvedCount += approved.length;
+                doneCount += done.length;
+
+                const board = document.createElement('div');
+                board.className = 'board';
+                board.innerHTML = `
+                    <div class="board-header">
+                        <h2 style="color: ${project.color}">${project.name}</h2>
+                        <span class="count">${projectTasks.length}</span>
+                    </div>
+                    <div class="board-content">
+                        ${[...pending, ...approved, ...done].map(task => `
+                            <div class="task ${task.status}" onclick="editTask(${task.id})">
+                                <div class="task-title">${task.title}</div>
+                                <div class="task-meta">
+                                    <span class="status-badge status-${task.status}">${task.status.toUpperCase()}</span>
+                                    ${task.subtasks ? `<span>${task.subtasks.filter(s => s.startsWith('✓')).length}/${task.subtasks.length} subtasks</span>` : ''}
+                                </div>
+                                ${task.status === 'pending' ? `
+                                    <div class="task-actions" onclick="event.stopPropagation()">
+                                        <button class="btn btn-approve" onclick="approveTask(${task.id})">✓ Approve</button>
+                                    </div>
+                                ` : task.status === 'approved' ? `
+                                    <div class="task-actions" onclick="event.stopPropagation()">
+                                        <button class="btn btn-done" onclick="completeTask(${task.id})">Mark Done</button>
+                                    </div>
+                                ` : ''}
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="add-task">
+                        <input type="text" placeholder="Add new task..." id="new-${project.id}" 
+                            onkeypress="if(event.key==='Enter') addTask('${project.id}')">
+                        <button class="btn btn-add" onclick="addTask('${project.id}')">+</button>
+                    </div>
+                `;
+                boardsContainer.appendChild(board);
+            });
+
+            document.getElementById('pending-count').textContent = pendingCount;
+            document.getElementById('approved-count').textContent = approvedCount;
+            document.getElementById('done-count').textContent = doneCount;
+        }
+
+        function addTask(projectId) {
+            const input = document.getElementById(`new-${projectId}`);
+            const title = input.value.trim();
+            if (!title) return;
+
+            const newTask = {
+                id: Date.now(),
+                project: projectId,
+                title: title,
+                desc: '',
+                status: 'pending',
+                subtasks: [],
+                created: new Date().toISOString()
+            };
+
+            data.tasks.push(newTask);
+            saveData();
+            input.value = '';
+            showNotification('Task added - pending your approval');
+        }
+
+        function approveTask(id) {
+            const task = data.tasks.find(t => t.id === id);
+            if (task) {
+                task.status = 'approved';
+                task.approvedAt = new Date().toISOString();
+                saveData();
+                showNotification(`✓ "${task.title}" approved - I'm on it`);
+                
+                // In real implementation, this could trigger a webhook/notification to me
+                console.log('TASK APPROVED:', task);
+            }
+        }
+
+        function completeTask(id) {
+            const task = data.tasks.find(t => t.id === id);
+            if (task) {
+                task.status = 'done';
+                task.completedAt = new Date().toISOString();
+                saveData();
+                showNotification(`✓ "${task.title}" completed`);
+            }
+        }
+
+        function editTask(id) {
+            const task = data.tasks.find(t => t.id === id);
+            if (!task) return;
+
+            editingTaskId = id;
+            document.getElementById('taskTitle').value = task.title;
+            document.getElementById('taskDesc').value = task.desc || '';
+            document.getElementById('taskProject').value = task.project;
+            document.getElementById('taskSubtasks').value = task.subtasks ? task.subtasks.join('\n') : '';
+            document.getElementById('taskModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('taskModal').classList.remove('active');
+            editingTaskId = null;
+        }
+
+        function saveTask() {
+            if (!editingTaskId) return;
+
+            const task = data.tasks.find(t => t.id === editingTaskId);
+            if (task) {
+                task.title = document.getElementById('taskTitle').value;
+                task.desc = document.getElementById('taskDesc').value;
+                task.project = document.getElementById('taskProject').value;
+                const subtasksText = document.getElementById('taskSubtasks').value;
+                task.subtasks = subtasksText.split('\n').filter(s => s.trim());
+                saveData();
+                showNotification('Task updated');
+            }
+            closeModal();
+        }
+
+        function showNotification(message) {
+            const notif = document.getElementById('notification');
+            notif.textContent = message;
+            notif.classList.add('show');
+            setTimeout(() => notif.classList.remove('show'), 3000);
+        }
+
+        // Close modal on outside click
+        document.getElementById('taskModal').addEventListener('click', (e) => {
+            if (e.target.id === 'taskModal') closeModal();
+        });
+
+        // Initial render
+        render();
+
+        // Check for approved tasks every 30 seconds (simulating me checking)
+        setInterval(() => {
+            const approvedTasks = data.tasks.filter(t => t.status === 'approved' && !t.notified);
+            approvedTasks.forEach(task => {
+                task.notified = true;
+                saveData();
+                console.log('I should work on:', task.title);
+            });
+        }, 30000);
+    </script>
+</body>
+</html>
