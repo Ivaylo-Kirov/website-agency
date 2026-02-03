@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SimpleSites — Websites That Handle Your Growth</title>
+    <title>Tica Solutions — Websites That Handle Your Growth</title>
     <style>
         * {
             margin: 0;
@@ -123,8 +123,21 @@
         }
 
         .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             font-size: 1.5rem;
             font-weight: 700;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
             background: linear-gradient(135deg, var(--accent), var(--accent-light));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -1065,7 +1078,21 @@
     <div class="orb orb-3"></div>
 
     <nav>
-        <div class="logo">SimpleSites</div>
+        <a href="#" class="logo">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Computer/Monitor -->
+                <rect x="10" y="35" width="55" height="40" rx="4" fill="#6366f1"/>
+                <rect x="15" y="40" width="45" height="28" rx="2" fill="#1a1a1a"/>
+                <rect x="30" y="75" width="15" height="8" fill="#6366f1"/>
+                <rect x="22" y="83" width="32" height="4" rx="2" fill="#6366f1"/>
+                <!-- Woman Head Silhouette -->
+                <circle cx="72" cy="35" r="18" fill="#818cf8"/>
+                <path d="M55 35C55 25.6 62.6 18 72 18C81.4 18 89 25.6 89 35C89 42 84.5 48 78.5 50.5L80 58C80 58 72 55 64 58L65.5 50.5C59.5 48 55 42 55 35Z" fill="#6366f1"/>
+                <!-- Hair detail -->
+                <path d="M55 32C55 22 62 15 72 15C82 15 89 22 89 32C89 25 84 20 72 20C60 20 55 25 55 32Z" fill="#a5b4fc"/>
+            </svg>
+            <span class="logo-text">Tica Solutions</span>
+        </a>
         <ul class="nav-links">
             <li><a href="#features">Features</a></li>
             <li><a href="#process">Process</a></li>
@@ -1353,7 +1380,7 @@
         <h2>Ready to Grow Your Business?</h2>
         <p>Join 50+ Toronto businesses who've transformed their online presence. Let's build something great together.</p>
         
-        <a href="mailto:hello@simplesites.ca" class="btn-primary">Start Your Project →</a>
+        <a href="mailto:hello@ticasolutions.ca" class="btn-primary">Start Your Project →</a>
         
         <p style="margin-top: 2rem; font-size: 0.9rem; color: var(--text-secondary);">
             Or text us at <strong style="color: var(--text-primary);">(416) XXX-XXXX</strong>
@@ -1361,7 +1388,7 @@
     </section>
 
     <footer>
-        <p>© 2026 SimpleSites Toronto. Helping local businesses grow online.</p>
+        <p>© 2026 Tica Solutions Toronto. Helping local businesses grow online.</p>
         <div class="footer-links">
             <a href="#features">Features</a>
             <a href="#process">Process</a>
@@ -1538,7 +1565,7 @@
 
         function requestAccess(e) {
             e.preventDefault();
-            alert('Access Request\n\nTo get client portal access:\n1. Contact your project manager\n2. Call (416) XXX-XXXX\n3. Email hello@simplesites.ca');
+            alert('Access Request\n\nTo get client portal access:\n1. Contact your project manager\n2. Call (416) XXX-XXXX\n3. Email hello@ticasolutions.ca');
         }
 
         // Close modal on outside click
