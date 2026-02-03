@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Websites for Small Businesses | Toronto Web Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        header {
+            background: #fff;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10rem 0 6rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Services */
+        .services {
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        /* Portfolio / Before-After */
+        .portfolio {
+            background: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: #f8f9fa;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .portfolio-header {
+            background: #2c3e50;
+            color: white;
+            padding: 1rem 1.5rem;
+        }
+
+        .portfolio-header h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .portfolio-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .before, .after {
+            padding: 1.5rem;
+            min-height: 200px;
+        }
+
+        .before {
+            background: #ffebee;
+            border-right: 2px dashed #e57373;
+        }
+
+        .after {
+            background: #e8f5e9;
+        }
+
+        .before h4, .after h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .before h4 {
+            color: #c62828;
+        }
+
+        .after h4 {
+            color: #2e7d32;
+        }
+
+        .mock-site {
+            background: white;
+            border-radius: 5px;
+            padding: 1rem;
+            font-size: 0.85rem;
+            min-height: 140px;
+        }
+
+        .mock-site.old {
+            background: #f5f5f5;
+            color: #999;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ccc;
+        }
+
+        .mock-site.new h5 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .mock-site.new ul {
+            list-style: none;
+            font-size: 0.8rem;
+        }
+
+        .mock-site.new li {
+            padding: 0.2rem 0;
+            color: #555;
+        }
+
+        .mock-site.new li::before {
+            content: "✓ ";
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .portfolio-results {
+            background: white;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .result-item strong {
+            display: block;
+            color: #667eea;
+            font-size: 1.3rem;
+        }
+
+        .result-item span {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .testimonials .section-title {
+            color: white;
+        }
+
+        .testimonials .section-subtitle {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .testimonial-stars {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .author-info h4 {
+            font-size: 1rem;
+        }
+
+        .author-info p {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Process */
+        .process {
+            background: #f8f9fa;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .process-step h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            border-color: #667eea;
+        }
+
+        .pricing-card.featured {
+            border-color: #667eea;
+            position: relative;
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: #e3f2fd;
+            border-radius: 10px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* About */
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .guarantee-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .guarantee-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact */
+        .contact-section {
+            background: #f8f9fa;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-info-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .contact-info-panel h3 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        .contact-form-panel {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #667eea;
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #5a6fd6;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links {
+            margin-top: 1rem;
+        }
+
+        .footer-links a {
+            color: #3498db;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 8rem 0 4rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .before-after {
+                grid-template-columns: 1fr;
+            }
+
+            .before {
+                border-right: none;
+                border-bottom: 2px dashed #e57373;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">🚀 SimpleSites Toronto</div>
+            <ul class="nav-links">
+                <li><a href="#work">Our Work</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Websites That Get You Customers</h1>
+            <p>Simple, affordable websites for Toronto small businesses.<br>No tech jargon. No hidden fees. Just results.</p>
+            <a href="#contact" class="cta-button">Get Your Free Quote</a>
+
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Websites Built</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">97%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">2 Weeks</div>
+                    <div class="stat-label">Average Delivery</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Recent Transformations</h2>
+            <p class="section-subtitle">Real results for Toronto businesses. Before we met them → After we built their site.</p>
+
+            <div class="portfolio-grid">
+                <!-- Project 1: Restaurant -->
+                <div class="portfolio-item">
+                    <div class="portfolio-header">
+                        <h3>🍽️ Mama Rosa's Trattoria</h3>
+                        <p>Italian Restaurant in Little Italy</p>
+                    </div>
+                    <div class="before-after">
+                        <div class="before">
+                            <h4>😞 Before</h4>
+                            <div class="mock-site old">
+                                <p>❌ No website<br>❌ Only Facebook page<br>❌ No online menu<br>❌ Customers calling to ask hours</p>
+                            </div>
+                        </div>
+                        
+                        <div class="after">
+                            <h4>😊 After</h4>
+                            <div class="mock-site new">
+                                <h5>mamarosatoronto.ca</h5>
+                                <ul>
+                                    <li>Full menu with photos</li>
+                                    <li>Online reservations</li>
+                                    <li>Google Maps integration</li>
+                                    <li>Mobile-friendly design</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-results">
+                        <div class="result-item">
+                            <strong>340%</strong>
+                            <span>More online visibility</span>
+                        </div>
+                        <div class="result-item">
+                            <strong>25/week</strong>
+                            <span>Online reservations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Contractor -->
+                <div class="portfolio-item">
+                    <div class="portfolio-header">
+                        <h3>🔧 Toronto Pro Plumbing</h3>
+                        <p>Emergency Plumbing Services</p>
+                    </div>
+                    
+                    <div class="before-after">
+                        <div class="before">
+                            <h4>😞 Before</h4>
+                            <div class="mock-site old">
+                                <p>❌ 2008-era website<br>❌ Not mobile-friendly<br>❌ No contact form<br>❌ Broke on phones</p>
+                            </div>
+                        </div>
+                        
+                        <div class="after">
+                            <h4>😊 After</h4>
+                            <div class="mock-site new">
+                                <h5>torontoproplumbing.ca</h5>
+                                <ul>
+                                    <li>Emergency call button</li>
+                                    <li>Service area map</li>
+                                    <li>Customer reviews</li>
+                                    <li>Instant quote form</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-results">
+                        <div class="result-item">
+                            <strong>3x</strong>
+                            <span>More service calls</span>
+                        </div>
+                        <div class="result-item">
+                            <strong>60%</strong>
+                            <span>From mobile users</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Salon -->
+                <div class="portfolio-item">
+                    <div class="portfolio-header">
+                        <h3>💇 Luxe Beauty Lounge</h3>
+                        <p>Hair & Nail Salon in The Beaches</p>
+                    </div>
+                    
+                    <div class="before-after">
+                        <div class="before">
+                            <h4>😞 Before</h4>
+                            <div class="mock-site old">
+                                <p>❌ Instagram only<br>❌ No booking system<br>❌ DMs for appointments<br>❌ Lost bookings</p>
+                            </div>
+                        </div>
+                        
+                        <div class="after">
+                            <h4>😊 After</h4>
+                            <div class="mock-site new">
+                                <h5>luxebeautylounge.ca</h5>
+                                <ul>
+                                    <li>Online booking 24/7</li>
+                                    <li>Service menu with prices</li>
+                                    <li>Stylist profiles</li>
+                                    <li>Photo gallery</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-results">
+                        <div class="result-item">
+                            <strong>45+/week</strong>
+                            <span>Online bookings</span>
+                        </div>
+                        <div class="result-item">
+                            <strong>10hrs</strong>
+                            <span>Saved weekly</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: Contractor -->
+                <div class="portfolio-item">
+                    <div class="portfolio-header">
+                        <h3>🏠 Greater Toronto Painting</h3>
+                        <p>Residential & Commercial Painters</p>
+                    </div>
+                    
+                    <div class="before-after">
+                        <div class="before">
+                            <h4>😞 Before</h4>
+                            <div class="mock-site old">
+                                <p>❌ Kijiji ads only<br>❌ No portfolio<br>❌ Phone tag for quotes<br>❌ Looked amateur</p>
+                            </div>
+                        </div>
+                        
+                        <div class="after">
+                            <h4>😊 After</h4>
+                            <div class="mock-site new">
+                                <h5>gtorontopainting.ca</h5>
+                                <ul>
+                                    <li>Before/after gallery</li>
+                                    <li>Online estimate requests</li>
+                                    <li>Testimonials with photos</li>
+                                    <li>Service area breakdown</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-results">
+                        <div class="result-item">
+                            <strong>200%</strong>
+                            <span>More quote requests</span>
+                        </div>
+                        <div class="result-item">
+                            <strong>Higher</strong>
+                            <span>Perceived value</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Toronto Business Owners Say</h2>
+            <p class="section-subtitle">Real reviews from real clients across the GTA.</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"I was skeptical about spending money on a website, but within 2 weeks of launching, I had 5 new customers find me on Google. The site pays for itself every month. Worth every penny."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">👨‍🍳</div>
+                        <div class="author-info">
+                            <h4>Marco Rossi</h4>
+                            <p>Owner, Mama Rosa's Trattoria, Little Italy</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Finally, a web designer who speaks human! No tech jargon, no upselling, just a beautiful site that works. My customers can actually find my hours and book online now. Game changer."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">💇</div>
+                        <div class="author-info">
+                            <h4>Sarah Chen</h4>
+                            <p>Owner, Luxe Beauty Lounge, The Beaches</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"My old website was embarrassing. Customers told me they almost didn't call because it looked sketchy. The new site looks professional and I show up on Google Maps now. Business is up 40%."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">🔧</div>
+                        <div class="author-info">
+                            <h4>David Okonkwo</h4>
+                            <p>Owner, Toronto Pro Plumbing, North York</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"I got 3 quotes from other developers — they wanted $5K+ and 2 months. These guys did it for $2,500 in 10 days. Professional, fast, and my phone hasn't stopped ringing since."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">🎨</div>
+                        <div class="author-info">
+                            <h4>Jennifer Walsh</h4>
+                            <p>Owner, Greater Toronto Painting, Etobicoke</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"As a one-person business, I don't have time to figure out tech stuff. They handled everything — writing the content, choosing photos, even setting up my Google Business listing. Truly done-for-you."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">🧘</div>
+                        <div class="author-info">
+                            <h4>Priya Sharma</h4>
+                            <p>Owner, Mindful Movement Yoga, Leslieville</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"Best investment I've made for my business. The website looks amazing on phones, which is where 70% of my customers find me. They even taught me how to update it myself."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">🧁</div>
+                        <div class="author-info">
+                            <h4>Amanda Liu</h4>
+                            <p>Owner, Sweet Dreams Bakery, Scarborough</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">What You Get</h2>
+            <p class="section-subtitle">Everything your business needs to succeed online.</p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobile-First Design</h3>
+                    <p>Over 60% of your customers are on phones. Your site will look perfect and load fast on every device.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>Google-Optimized</h3>
+                    <p>Built with SEO best practices so customers in Toronto can actually find you when they search.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Slow sites lose customers. We guarantee your site loads in under 3 seconds or we fix it free.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Secure & Reliable</h3>
+                    <p>SSL certificate, secure hosting, and regular backups included. Your site stays online and safe.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📝</div>
+                    <h3>We Write Your Content</h3>
+                    <p>Don't know what to say? We'll write professional copy that sells your services for you.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🤝</div>
+                    <h3>Ongoing Support</h3>
+                    <p>We're here after launch. Questions? Changes? Just send us a message and we'll help.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">From first call to live website in as little as 10 days.</p>
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Free Consultation</h3>
+                    <p>We chat about your business, goals, and what you need. No pressure, no obligation.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>We Build It</h3>
+                    <p>You provide photos (or we source stock), we handle design, writing, and tech.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>You Review</h3>
+                    <p>See a preview, request changes. We revise until you're 100% happy.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Go Live</h3>
+                    <p>We launch your site, set up Google, and show you how to make updates.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple Pricing</h2>
+            <p class="section-subtitle">No hidden fees. No surprises. Just results.</p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Starter</h3>
+                    <div class="price">$1,497</div>
+                    <p>Perfect for new businesses</p>
+                    <ul class="pricing-features">
+                        <li>Up to 3 Pages</li>
+                        <li>Mobile Responsive</li>
+                        <li>Contact Form</li>
+                        <li>Google Maps</li>
+                        <li>Basic SEO Setup</li>
+                        <li>1 Round of Revisions</li>
+                        <li>2 Week Delivery</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="padding: 0.8rem 2rem; font-size: 1rem;">Get Started</a>
+                </div>
+
+                <div class="pricing-card featured">
+                    <h3>Business</h3>
+                    <div class="price">$2,497</div>
+                    <p>Most popular for growing businesses</p>
+                    <ul class="pricing-features">
+                        <li>Up to 6 Pages</li>
+                        <li>Everything in Starter</li>
+                        <li>Blog Setup</li>
+                        <li>Social Media Integration</li>
+                        <li>Google Business Profile Setup</li>
+                        <li>2 Rounds of Revisions</li>
+                        <li>30 Days Support</li>
+                        <li>10-14 Day Delivery</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="padding: 0.8rem 2rem; font-size: 1rem;">Get Started</a>
+                </div>
+
+                <div class="pricing-card">
+                    <h3>Complete</h3>
+                    <div class="price">$3,997</div>
+                    <p>For businesses ready to dominate online</p>
+                    <ul class="pricing-features">
+                        <li>Up to 10 Pages</li>
+                        <li>Everything in Business</li>
+                        <li>E-commerce (up to 20 products)</li>
+                        <li>Advanced SEO Package</li>
+                        <li>Speed Optimization</li>
+                        <li>3 Rounds of Revisions</li>
+                        <li>90 Days Support</li>
+                        <li>Priority Delivery</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="padding: 0.8rem 2rem; font-size: 1rem;">Get Started</a>
+                </div>
+            </div>
+
+            <div class="pricing-note">
+                <strong>💡 Prefer to spread out the cost?</strong><br>
+                Ask about our <strong>$199/month</strong> plan — includes website, hosting, maintenance, and unlimited small updates. Minimum 12 months.
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">Why Toronto Businesses Choose Us</h2>
+            
+            <div class="about-content">
+                <p>We're a small Toronto-based team that specializes in helping other small businesses succeed online. No fancy agency overhead. No account managers. Just direct communication with the people building your site.</p>
+                <p>We've built websites for restaurants, contractors, salons, consultants, and shops across the GTA. We know what works for Toronto businesses because we're one too.</p>
+
+                <div class="guarantee-box">
+                    <h3>🎯 Our 100% Satisfaction Guarantee</h3>
+                    <p>If you're not happy with your website, we'll keep working until you are. No additional fees, no questions asked. We're not satisfied until you're proud to share your site.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Let's Build Your Website</h2>
+            <p class="section-subtitle">Tell us about your project. We'll get back to you within 24 hours with a free quote.</p>
+
+            <div class="contact-grid">
+                <div class="contact-info-panel">
+                    <h3>📞 Prefer to Talk?</h3>
+                    
+                    <div class="contact-method">
+                        <span class="contact-icon">📱</span>
+                        <div>
+                            <strong>Call or Text</strong><br>
+                            (416) XXX-XXXX<br>
+                            <small>Mon-Fri 9am-7pm, Sat 10am-4pm</small>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <strong>Email</strong><br>
+                            hello@simplesitesto.ca<br>
+                            <small>We reply within 24 hours</small>
+                        </div>
+                    </div>
+
+                    <div class="contact-method">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <strong>Based In</strong><br>
+                            Toronto, Ontario<br>
+                            <small>Serving the entire GTA</small>
+                        </div>
+                    </div>
+
+                    <div style="background: #e3f2fd; padding: 1rem; border-radius: 8px; margin-top: 1.5rem;">
+                        <strong>⚡ Quick Response Guarantee</strong><br>
+                        <small>All inquiries answered within 24 hours. Most within 2 hours during business hours.</small>
+                    </div>
+                </div>
+
+                <form class="contact-form-panel" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="business">Business Name</label>
+                        <input type="text" id="business" name="business">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="package">Interested In</label>
+                        <select id="package" name="package">
+                            <option>Not sure yet — need advice</option>
+                            <option>Starter Package ($1,497)</option>
+                            <option>Business Package ($2,497)</option>
+                            <option>Complete Package ($3,997)</option>
+                            <option>Monthly Plan ($199/month)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Tell us about your project</label>
+                        <textarea id="message" name="message" placeholder="What does your business do? Do you have an existing website? What's your timeline?"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Get My Free Quote</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SimpleSites Toronto. Helping local businesses grow online.</p>
+            <div class="footer-links">
+                <a href="#services">Services</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#work">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thanks for your message! We\'ll get back to you within 24 hours with your free quote.');
+        });
+    </script>
+</body>
+</html>
