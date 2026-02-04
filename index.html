@@ -44,7 +44,7 @@
             color: var(--text-primary);
             text-decoration: none;
         }
-        .logo svg { width: 40px; height: 40px; }
+        .logo svg { width: 48px; height: 48px; }
         .logo-text {
             font-family: 'Outfit', sans-serif;
             font-weight: 600;
@@ -265,14 +265,22 @@
 <body>
     <nav>
         <a href="#" class="logo">
-            <svg viewBox="0 0 100 100" fill="none">
-                <rect x="10" y="35" width="55" height="40" rx="4" fill="#6366f1"/>
-                <rect x="15" y="40" width="45" height="28" rx="2" fill="#1a1a1a"/>
-                <rect x="30" y="75" width="15" height="8" fill="#6366f1"/>
-                <rect x="22" y="83" width="32" height="4" rx="2" fill="#6366f1"/>
-                <circle cx="72" cy="35" r="18" fill="#818cf8"/>
-                <path d="M55 35C55 25.6 62.6 18 72 18C81.4 18 89 25.6 89 35C89 42 84.5 48 78.5 50.5L80 58C80 58 72 55 64 58L65.5 50.5C59.5 48 55 42 55 35Z" fill="#6366f1"/>
-                <path d="M55 32C55 22 62 15 72 15C82 15 89 22 89 32C89 25 84 20 72 20C60 20 55 25 55 32Z" fill="#a5b4fc"/>
+            <svg viewBox="0 0 48 48" fill="none">
+                <!-- Abstract geometric T shape / arrow pointing up-right -->
+                <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#6366f1"/>
+                        <stop offset="100%" style="stop-color:#a855f7"/>
+                    </linearGradient>
+                </defs>
+                <!-- Top bar -->
+                <rect x="4" y="4" width="40" height="12" rx="3" fill="url(#logoGrad)"/>
+                <!-- Vertical stem -->
+                <rect x="18" y="4" width="12" height="40" rx="3" fill="url(#logoGrad)"/>
+                <!-- Cutout creating the T negative space -->
+                <rect x="22" y="8" width="4" height="32" rx="1" fill="#0a0a0a"/>
+                <!-- Accent dot -->
+                <circle cx="38" cy="38" r="6" fill="#22d3ee"/>
             </svg>
             <span class="logo-text">Tica Solutions</span>
         </a>
