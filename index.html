@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tica Solutions - Websites That Get You Customers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
@@ -16,12 +16,30 @@
             --accent: #D4AF37;
             --accent-light: #F4D03F;
             --border: #2a2a2a;
+            --orb-opacity: 0.4;
+        }
+        [data-theme="light"] {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a2e;
+            --text-secondary: #64748b;
+            --accent: #D4AF37;
+            --accent-light: #B8960B;
+            --border: #e2e8f0;
+            --orb-opacity: 0.15;
         }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            letter-spacing: -0.02em;
+            line-height: 0.95;
         }
         nav {
             position: fixed;
@@ -32,9 +50,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #000000;
+            background: var(--bg-secondary);
             z-index: 1000;
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-bottom: 1px solid var(--border);
         }
         nav.scrolled {
             top: 1rem;
@@ -45,29 +64,54 @@
             max-width: 1600px;
             padding: 0.75rem 3rem;
             border-radius: 50px;
-            background: #000000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-        }
-        nav.scrolled .logo img {
-            height: 63px;
+            background: var(--bg-secondary);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border: 1px solid var(--border);
         }
         nav.scrolled .logo {
             margin-right: 4rem;
+        }
+        nav.scrolled .logo-main {
+            font-size: 1.25rem;
+        }
+        nav.scrolled .logo-sub {
+            font-size: 0.55rem;
         }
         nav.scrolled .nav-links {
             gap: 3.5rem;
         }
         .logo {
             display: flex;
-            align-items: center;
-            gap: 0.75rem;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+            text-decoration: none;
+        }
+        .logo-main {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--text-primary);
-            text-decoration: none;
+            letter-spacing: -0.02em;
+            margin-bottom: 5px;
+        }
+        .logo-sub {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        .font-mono-label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
         }
         .logo img { height: 90px; width: auto; }
-        .nav-links { display: flex; gap: 2rem; list-style: none; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
         .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.95rem; }
         .nav-links a:hover { color: var(--text-primary); }
         .nav-cta {
@@ -78,12 +122,28 @@
             text-decoration: none;
             font-weight: 600;
         }
+        /* Theme Toggle */
+        .theme-toggle {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 0.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        .theme-toggle:hover {
+            border-color: var(--accent);
+        }
         /* Floating Gradient Orbs */
         .orb {
             position: fixed;
             border-radius: 50%;
             filter: blur(80px);
-            opacity: 0.4;
+            opacity: var(--orb-opacity);
             pointer-events: none;
             z-index: -1;
         }
@@ -113,12 +173,12 @@
             75% { transform: translate(20px, 10px) scale(1.02); }
         }
         .hero {
-            min-height: 100vh;
+            min-height: auto;
             display: flex;
-            align-items: center;
-            padding: 8rem 4rem 4rem;
+            align-items: flex-start;
+            padding: 6rem 4rem 2rem;
             position: relative;
-            overflow: hidden;
+            overflow: visible;
         }
         .hero-content {
             flex: 1;
@@ -128,7 +188,7 @@
         .hero-visual {
             flex: 1;
             position: relative;
-            height: 500px;
+            height: 420px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -153,22 +213,22 @@
             object-fit: cover;
         }
         .hero-img-1 {
-            width: 340px; height: 230px;
+            width: 320px; height: 200px;
             top: 5%; left: 5%;
             z-index: 3;
             transform: rotate(-2deg);
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(168, 85, 247, 0.3));
         }
         .hero-img-2 {
-            width: 300px; height: 190px;
+            width: 280px; height: 170px;
             top: 40%; right: 0%;
             z-index: 2;
             transform: rotate(3deg);
             background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.4));
         }
         .hero-img-3 {
-            width: 280px; height: 340px;
-            bottom: 0%; left: 15%;
+            width: 260px; height: 300px;
+            top: 50%; left: 10%;
             z-index: 1;
             transform: rotate(1deg);
             background: linear-gradient(135deg, rgba(34, 211, 238, 0.3), rgba(99, 102, 241, 0.4));
@@ -178,6 +238,9 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        [data-theme="dark"] .hero h1 {
             background: linear-gradient(180deg, #ffffff 0%, #a0a0a0 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -229,28 +292,71 @@
         }
         .hero-stats {
             display: flex;
-            gap: 3rem;
-            margin-top: 3rem;
+            gap: 2rem;
+            margin-top: 1rem;
             flex-wrap: wrap;
         }
         .stat { text-align: left; }
-        .stat-number { font-size: 2rem; font-weight: 700; color: white; }
+        .stat-number { font-size: 2rem; font-weight: 700; color: var(--text-primary); }
         .stat-label { font-size: 0.9rem; color: var(--text-secondary); }
         @media (max-width: 900px) {
-            .hero { flex-direction: column; padding: 7rem 2rem 3rem; text-align: center; }
+            .hero { flex-direction: column; padding: 6rem 1.5rem 2rem; text-align: center; }
             .hero-content { max-width: 100%; }
-            .hero p { max-width: 100%; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { max-width: 100%; font-size: 1rem; }
             .hero-cta { justify-content: center; }
-            .hero-visual { height: 350px; width: 100%; margin-top: 2rem; }
-            .hero-img-1 { width: 240px; height: 160px; left: 5%; }
-            .hero-img-2 { width: 220px; height: 140px; right: 5%; }
-            .hero-img-3 { width: 200px; height: 240px; left: 25%; }
+            .hero-visual { display: none; }
+            .hero-reviews { margin-top: 1.5rem; }
+            .hero-reviews > div:last-child { 
+                flex-wrap: nowrap; 
+                overflow-x: auto; 
+                -webkit-overflow-scrolling: touch;
+                gap: 0.75rem;
+            }
+            .hero-review-card { 
+                flex: 0 0 260px !important; 
+                padding: 0.875rem; 
+            }
+            .hero-review-card p { font-size: 0.8rem; }
             .stat { text-align: center; }
         }
         .stat { text-align: center; }
-        .stat-number { font-size: 2.5rem; font-weight: 700; color: white; }
-        .stat-label { font-size: 0.9rem; color: rgba(255,255,255,0.8); }
+        .stat-number { font-size: 2.5rem; font-weight: 700; color: var(--text-primary); }
+        .stat-label { font-size: 0.9rem; color: var(--text-secondary); }
         section { padding: 5rem 5%; max-width: 1200px; margin: 0 auto; }
+        
+        /* Nav link underline animation */
+        .nav-links a {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-links a.active {
+            color: var(--accent);
+        }
+        
+        /* Section highlight animation when navigated */
+        @keyframes sectionHighlight {
+            0% { background-color: transparent; }
+            50% { background-color: rgba(212, 175, 55, 0.05); }
+            100% { background-color: transparent; }
+        }
+        section:target {
+            animation: sectionHighlight 1s ease;
+        }
         .section-title {
             font-size: clamp(2rem, 5vw, 2.5rem);
             text-align: center;
@@ -349,10 +455,12 @@
         }
         .pricing-card h3 { margin-bottom: 0.5rem; }
         .pricing-card .price {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 3rem;
             font-weight: 700;
             color: var(--accent);
             margin: 1rem 0;
+            letter-spacing: -0.02em;
         }
         .pricing-features {
             list-style: none;
@@ -391,16 +499,95 @@
             padding: 3rem 5%;
             text-align: center;
             color: var(--text-secondary);
-            background: #000000;
+            background: var(--bg-secondary);
+        }
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        .mobile-nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .mobile-nav-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+        .mobile-nav-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--bg-secondary);
+            z-index: 1001;
+            padding: 5rem 2rem 2rem;
+            transition: right 0.3s ease;
+            border-left: 1px solid var(--border);
+        }
+        .mobile-nav-menu.active {
+            right: 0;
+        }
+        .mobile-nav-menu a {
+            display: block;
+            color: var(--text-primary);
+            text-decoration: none;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 1.1rem;
+        }
+        .mobile-nav-menu a:hover {
+            color: var(--accent);
+        }
+        .mobile-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
         @media (max-width: 768px) {
             .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
             nav.scrolled {
-                padding: 0.6rem 1rem;
-                max-width: 95%;
+                padding: 0.75rem 5%;
+                max-width: 100%;
+                left: 0;
+                right: 0;
+                transform: none;
+                border-radius: 0;
+                top: 0;
             }
-            .hero { padding-top: 6rem; }
-            .hero-stats { gap: 1.5rem; }
+            nav.scrolled .logo {
+                margin-right: 0;
+            }
+            .hero { padding: 6rem 1.5rem 2rem; }
+            .hero-visual { display: none; }
+            .hero-content { max-width: 100%; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .hero-reviews { margin-top: 2rem; padding-top: 1.5rem; }
+            .hero-reviews > div { grid-template-columns: 1fr !important; }
+            .hero-review-card { padding: 1rem; }
+            .hero-review-card p { font-size: 0.85rem; }
             .pricing-card.featured { transform: none; }
         }
     </style>
@@ -408,16 +595,33 @@
 <body>
     <nav>
         <a href="#" class="logo">
-            <img src="images/logo.jpg" alt="Tica Solutions">
+            <span class="logo-main">TICA</span>
+            <span class="logo-sub">SOLUTIONS</span>
         </a>
         <ul class="nav-links">
             <li><a href="#features">Services</a></li>
+            <li><a href="#principles">Principles</a></li>
             <li><a href="#case-studies">Case Studies</a></li>
             <li><a href="#testimonials">Reviews</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li><button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">🌙</button></li>
         </ul>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">☰</button>
     </nav>
+
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+    <div class="mobile-nav-menu" id="mobileNavMenu">
+        <button class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close menu">✕</button>
+        <a href="#features" class="mobile-nav-link">Services</a>
+        <a href="#principles" class="mobile-nav-link">Principles</a>
+        <a href="#case-studies" class="mobile-nav-link">Case Studies</a>
+        <a href="#testimonials" class="mobile-nav-link">Reviews</a>
+        <a href="#pricing" class="mobile-nav-link">Pricing</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <button class="theme-toggle" id="mobileThemeToggle" title="Toggle dark/light mode" style="margin-top: 2rem;">🌙</button>
+    </div>
 
     <!-- Floating Gradient Orbs -->
     <div class="orb orb-1"></div>
@@ -433,14 +637,36 @@
                 <a href="#features" class="btn-secondary">See How It Works</a>
             </div>
 
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Websites Built</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">2 Weeks</div>
-                    <div class="stat-label">Average Delivery</div>
+            <!-- Social Proof Reviews -->
+            <div class="hero-reviews" style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+                <p style="font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;">Trusted by 50+ Toronto businesses</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="hero-review-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem;">
+                        <div style="display: flex; gap: 1px; margin-bottom: 0.5rem;">
+                            <span style="color: #ffd700; font-size: 0.8rem;">★</span><span style="color: #ffd700; font-size: 0.8rem;">★</span><span style="color: #ffd700; font-size: 0.8rem;">★</span><span style="color: #ffd700; font-size: 0.8rem;">★</span><span style="color: #ffd700; font-size: 0.8rem;">★</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.45; margin-bottom: 0.75rem; font-style: italic;">"I was skeptical about spending money on a website, but within 1 month of launching, I had 5 new customers find me on Google. The site pays for itself every month."</p>
+                        <div style="display: flex; align-items: center; gap: 0.6rem;">
+                            <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">👨‍🍳</div>
+                            <div>
+                                <p style="font-size: 0.8rem; font-weight: 600; color: var(--text-primary);">Marco Rossi</p>
+                                <p style="font-size: 0.7rem; color: var(--text-secondary);">Mama Rosa's Trattoria</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hero-review-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem;">
+                        <div style="display: flex; gap: 1px; margin-bottom: 0.5rem;">
+                            <span style="color: #ffd700; font-size: 0.8rem;">★</span><span style="color: #ffd700; font-size: 0.8rem;">★</span><span style="color: #ffd700; font-size: 0.8rem;">★</span><span style="color: #ffd700; font-size: 0.8rem;">★</span><span style="color: #ffd700; font-size: 0.8rem;">★</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-primary); line-height: 1.45; margin-bottom: 0.75rem; font-style: italic;">"As a one-person business, I don't have time to figure out tech stuff. They handled everything - writing, photos, and hosting."</p>
+                        <div style="display: flex; align-items: center; gap: 0.6rem;">
+                            <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #22c55e, #16a34a); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">🐕</div>
+                            <div>
+                                <p style="font-size: 0.8rem; font-weight: 600; color: var(--text-primary);">Jessica Park</p>
+                                <p style="font-size: 0.7rem; color: var(--text-secondary);">Toronto Paws Grooming</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -524,6 +750,236 @@
         </div>
     </section>
 
+    <!-- Background Section -->
+    <section id="background" style="background: var(--bg-primary); margin: 0; max-width: none; padding: 5rem 5%;">
+        <h2 class="section-title">Our Background</h2>
+        <p class="section-subtitle">20+ years building websites for Fortune 500 companies. Now focused on Toronto's small businesses.</p>
+        
+        <p style="max-width: 800px; margin: 0 auto 3rem; text-align: center; color: var(--text-secondary); line-height: 1.7;">Before Tica Solutions, our technical lead spent two decades developing enterprise web applications for global healthcare and financial brands. We've taken that same expertise and made it accessible to local businesses.</p>
+        
+        <p style="text-align: center; color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 2rem;">Previous experience includes:</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto;">
+            <div style="background: white; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; justify-content: center; height: 80px;">
+                <img src="images/roche.png" alt="Roche" style="max-width: 100%; max-height: 50px; object-fit: contain;">
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; justify-content: center; height: 80px;">
+                <img src="images/rbc.png" alt="RBC" style="max-width: 100%; max-height: 50px; object-fit: contain;">
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; justify-content: center; height: 80px;">
+                <img src="images/janssen.png" alt="Janssen" style="max-width: 100%; max-height: 50px; object-fit: contain;">
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; justify-content: center; height: 80px;">
+                <img src="images/galderma.png" alt="Galderma" style="max-width: 100%; max-height: 50px; object-fit: contain;">
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; justify-content: center; height: 80px;">
+                <img src="images/bd.png" alt="BD" style="max-width: 100%; max-height: 50px; object-fit: contain;">
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; justify-content: center; height: 80px;">
+                <img src="images/allergan.png" alt="Allergan" style="max-width: 100%; max-height: 50px; object-fit: contain;">
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; justify-content: center; height: 80px;">
+                <img src="images/abbott.png" alt="Abbott" style="max-width: 100%; max-height: 50px; object-fit: contain;">
+            </div>
+            <div style="background: white; border-radius: 12px; padding: 1.25rem; display: flex; align-items: center; justify-content: center; height: 80px;">
+                <img src="images/bayer.png" alt="Bayer" style="max-width: 100%; max-height: 50px; object-fit: contain;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Enterprise Projects Section -->
+    <section id="projects" style="background: var(--bg-secondary); margin: 0; max-width: none; padding: 5rem 5%;">
+        <h2 class="section-title">Enterprise Projects</h2>
+        <p class="section-subtitle">A selection of web applications we've built for Fortune 500 companies.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; max-width: 1400px; margin: 3rem auto 0;">
+            <!-- Project 1 -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+                <div style="height: 180px; overflow: hidden;">
+                    <img src="images/bdPharmTech_landing.png" alt="BD PharmTech" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">BD PharmTech</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Pharmaceutical technology platform</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">Angular</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">.NET</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+                <div style="height: 180px; overflow: hidden;">
+                    <img src="images/hcpPortal_landing.png" alt="HCP Portal" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">HCP Portal</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Healthcare professional portal</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">Angular</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">AWS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+                <div style="height: 180px; overflow: hidden;">
+                    <img src="images/bdPortal_landing.png" alt="BD Global IGX" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">BD Global IGX</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Global immunology platform</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">AEM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+                <div style="height: 180px; overflow: hidden;">
+                    <img src="images/bioA_landing.png" alt="Janssen BioAdvance" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Janssen BioAdvance</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Biotech advancement platform</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">React</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">.NET</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+                <div style="height: 180px; overflow: hidden;">
+                    <img src="images/myfreestyle_landing.png" alt="Abbott MyFreeStyle" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Abbott MyFreeStyle</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Diabetes management platform</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">Django</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+                <div style="height: 180px; overflow: hidden;">
+                    <img src="images/rbcV_landing.png" alt="RBC Ville" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">RBC Ville</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Banking platform application</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">React</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 7 -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+                <div style="height: 180px; overflow: hidden;">
+                    <img src="images/dysport_landing.png" alt="Galderma Dysport" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Galderma Dysport</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Aesthetic medicine platform</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">WordPress</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">AWS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 8 -->
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+                <div style="height: 180px; overflow: hidden;">
+                    <img src="images/botox_landing.png" alt="Allergan Botox" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">Allergan Botox</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Medical aesthetics platform</p>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">React</span>
+                        <span style="background: rgba(99, 102, 241, 0.1); color: var(--accent-light); padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.75rem;">AWS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Principles Section -->
+    <section id="principles" style="background: var(--bg-primary); margin: 0; max-width: none; padding: 5rem 5%;">
+        <h2 class="section-title">Our Principles</h2>
+        <p class="section-subtitle">How we make decisions—and keep quality high.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1200px; margin: 3rem auto 0;">
+            <div class="principle-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='var(--accent)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--border)'; this.style.boxShadow='none';">
+                <div style="height: 160px; overflow: hidden;">
+                    <img src="images/principles_clarity.jpg" alt="Clarity First" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary);">Clarity First</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Every element has a purpose. No clutter, no confusion.</p>
+                </div>
+            </div>
+
+            <div class="principle-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='var(--accent)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--border)'; this.style.boxShadow='none';">
+                <div style="height: 160px; overflow: hidden;">
+                    <img src="images/principles_performance.jpg" alt="Performance Always" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary);">Performance Always</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Speed is a feature. Slow sites lose customers.</p>
+                </div>
+            </div>
+
+            <div class="principle-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='var(--accent)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--border)'; this.style.boxShadow='none';">
+                <div style="height: 160px; overflow: hidden;">
+                    <img src="images/principles_accessible.jpg" alt="Accessible by Default" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary);">Accessible by Default</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Design for everyone. Good accessibility is good design.</p>
+                </div>
+            </div>
+
+            <div class="principle-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='var(--accent)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--border)'; this.style.boxShadow='none';">
+                <div style="height: 160px; overflow: hidden;">
+                    <img src="images/principles_mobile.jpg" alt="Mobile-First" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary);">Mobile-First</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Most users are on phones. We start there and scale up.</p>
+                </div>
+            </div>
+
+            <div class="principle-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='var(--accent)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--border)'; this.style.boxShadow='none';">
+                <div style="height: 160px; overflow: hidden;">
+                    <img src="images/principles_seo.jpg" alt="SEO-Aware" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary);">SEO-Aware</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Built to be found. Technical SEO from day one.</p>
+                </div>
+            </div>
+
+            <div class="principle-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-8px)'; this.style.borderColor='var(--accent)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='var(--border)'; this.style.boxShadow='none';">
+                <div style="height: 160px; overflow: hidden;">
+                    <img src="images/principles_maintainable.jpg" alt="Maintainable Code" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 1.5rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary);">Maintainable Code</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.9rem;">Easy to update and scale. Clean code that lasts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="testimonials" class="testimonials">
         <h2 class="section-title">What Toronto Business Owners Say</h2>
         <p class="section-subtitle">Real reviews from real clients across the GTA.</p>
@@ -579,12 +1035,12 @@
 
             <div class="testimonial-card">
                 <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"As a one-person business, I don't have time to figure out tech stuff. They handled everything - writing, photos, even Google Business. Truly done-for-you."</p>
+                <p class="testimonial-text">"As a one-person business, I don't have time to figure out tech stuff. They handled everything - writing, photos, and hosting. Truly done-for-you."</p>
                 <div class="testimonial-author">
-                    <div class="author-avatar">🧘</div>
+                    <div class="author-avatar">🐕</div>
                     <div class="author-info">
-                        <h4>Priya Sharma</h4>
-                        <p>Owner, Mindful Movement Yoga</p>
+                        <h4>Jessica Park</h4>
+                        <p>Owner, Toronto Paws Grooming</p>
                     </div>
                 </div>
             </div>
@@ -714,27 +1170,27 @@
     </section>
 
     <!-- Case Studies Section -->
-    <section id="case-studies" style="background: #000000; margin: 0; max-width: none; padding: 5rem 5%;">
+    <section id="case-studies" style="background: var(--bg-secondary); margin: 0; max-width: none; padding: 5rem 5%;">
         <h2 class="section-title">Case Studies</h2>
         <p class="section-subtitle">Proven results that speak for themselves.</p>
 
         <div class="case-studies-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; max-width: 1200px; margin: 3rem auto 0;">
-            <div class="case-study-card" style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(168, 85, 247, 0.1)); border-radius: 50%; filter: blur(40px);"></div>
+            <div class="case-study-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.08)); border-radius: 50%; filter: blur(40px);"></div>
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #ff6b6b, #ee5a5a); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">🍝</div>
                     <div>
-                        <h3 style="font-size: 1.1rem;">Bella Vista Restaurant</h3>
+                        <h3 style="font-size: 1.1rem; color: var(--text-primary);">Bella Vista Restaurant</h3>
                         <p style="color: var(--text-secondary); font-size: 0.85rem;">Italian Restaurant • Etobicoke</p>
                     </div>
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 12px; text-align: center;">
-                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent-light);">3x</div>
+                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent);">3x</div>
                         <div style="font-size: 0.75rem; color: var(--text-secondary);">More Bookings</div>
                     </div>
                     <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 12px; text-align: center;">
-                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent-light);">Page 1</div>
+                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent);">Page 1</div>
                         <div style="font-size: 0.75rem; color: var(--text-secondary);">Google Results</div>
                     </div>
                 </div>
@@ -744,22 +1200,22 @@
                 </div>
             </div>
 
-            <div class="case-study-card" style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(34, 211, 238, 0.2), rgba(99, 102, 241, 0.1)); border-radius: 50%; filter: blur(40px);"></div>
+            <div class="case-study-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(34, 211, 238, 0.15), rgba(99, 102, 241, 0.08)); border-radius: 50%; filter: blur(40px);"></div>
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #3b82f6, #1d4ed8); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">🔧</div>
                     <div>
-                        <h3 style="font-size: 1.1rem;">Quick Fix Plumbing</h3>
+                        <h3 style="font-size: 1.1rem; color: var(--text-primary);">Quick Fix Plumbing</h3>
                         <p style="color: var(--text-secondary); font-size: 0.85rem;">Emergency Services • Mississauga</p>
                     </div>
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 12px; text-align: center;">
-                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent-light);">Top 5</div>
+                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent);">Top 5</div>
                         <div style="font-size: 0.75rem; color: var(--text-secondary);">Local Search</div>
                     </div>
                     <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 12px; text-align: center;">
-                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent-light);">2-3x</div>
+                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent);">2-3x</div>
                         <div style="font-size: 0.75rem; color: var(--text-secondary);">More Calls/Week</div>
                     </div>
                 </div>
@@ -769,22 +1225,22 @@
                 </div>
             </div>
 
-            <div class="case-study-card" style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(245, 158, 11, 0.2), rgba(139, 92, 246, 0.1)); border-radius: 50%; filter: blur(40px);"></div>
+            <div class="case-study-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(139, 92, 246, 0.08)); border-radius: 50%; filter: blur(40px);"></div>
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #f59e0b, #d97706); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">🏠</div>
                     <div>
-                        <h3 style="font-size: 1.1rem;">GTA Painters</h3>
+                        <h3 style="font-size: 1.1rem; color: var(--text-primary);">GTA Painters</h3>
                         <p style="color: var(--text-secondary); font-size: 0.85rem;">Residential Painting • Vaughan</p>
                     </div>
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 12px; text-align: center;">
-                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent-light);">20+</div>
+                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent);">20+</div>
                         <div style="font-size: 0.75rem; color: var(--text-secondary);">Quote Requests</div>
                     </div>
                     <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 12px; text-align: center;">
-                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent-light);">4.8★</div>
+                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent);">4.8★</div>
                         <div style="font-size: 0.75rem; color: var(--text-secondary);">Review Rating</div>
                     </div>
                 </div>
@@ -794,22 +1250,22 @@
                 </div>
             </div>
 
-            <div class="case-study-card" style="background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;">
-                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(236, 72, 153, 0.2), rgba(139, 92, 246, 0.1)); border-radius: 50%; filter: blur(40px);"></div>
+            <div class="case-study-card" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;">
+                <div style="position: absolute; top: -50px; right: -50px; width: 150px; height: 150px; background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(139, 92, 246, 0.08)); border-radius: 50%; filter: blur(40px);"></div>
                 <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #ec4899, #be185d); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">💇</div>
                     <div>
-                        <h3 style="font-size: 1.1rem;">Studio Glam</h3>
+                        <h3 style="font-size: 1.1rem; color: var(--text-primary);">Studio Glam</h3>
                         <p style="color: var(--text-secondary); font-size: 0.85rem;">Hair & Makeup • Downtown Toronto</p>
                     </div>
                 </div>
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
                     <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 12px; text-align: center;">
-                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent-light);">60%</div>
+                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent);">60%</div>
                         <div style="font-size: 0.75rem; color: var(--text-secondary);">Online Bookings</div>
                     </div>
                     <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 12px; text-align: center;">
-                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent-light);">Fast</div>
+                        <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent);">Fast</div>
                         <div style="font-size: 0.75rem; color: var(--text-secondary);">Load Time</div>
                     </div>
                 </div>
@@ -878,7 +1334,10 @@
     </section>
 
     <footer>
-        <img src="images/logo.jpg" alt="Tica Solutions" style="height: 60px; margin-bottom: 1rem; opacity: 0.7;">
+        <div style="display: flex; flex-direction: column; align-items: center; line-height: 1; margin-bottom: 1rem;">
+            <span style="font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em;">TICA</span>
+            <span style="font-size: 0.65rem; letter-spacing: 0.3em; color: var(--text-secondary); font-weight: 500; margin-top: 5px;">SOLUTIONS</span>
+        </div>
         <p>© 2026 Tica Solutions. Helping Toronto businesses grow online.</p>
     </footer>
 
@@ -898,6 +1357,90 @@
 
             lastScrollY = scrollY;
         }, { passive: true });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+        mobileThemeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+            mobileThemeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+        });
+
+        // Smooth scroll with offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Add active state to clicked link
+                    document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                    document.querySelectorAll('.mobile-nav-menu a').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const navHeight = 100;
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                    const offsetPosition = elementPosition - navHeight;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+                
+                // Close mobile menu if open
+                mobileNavMenu.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Mobile Navigation
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+        const mobileNavMenu = document.getElementById('mobileNavMenu');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+
+        function openMobileMenu() {
+            mobileNavMenu.classList.add('active');
+            mobileNavOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileMenu() {
+            mobileNavMenu.classList.remove('active');
+            mobileNavOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileCloseBtn.addEventListener('click', closeMobileMenu);
+        mobileNavOverlay.addEventListener('click', closeMobileMenu);
+
+        // Mobile theme toggle
+        mobileThemeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+            mobileThemeToggle.textContent = newTheme === 'dark' ? '🌙' : '☀️';
+        });
     </script>
 </body>
 </html>
